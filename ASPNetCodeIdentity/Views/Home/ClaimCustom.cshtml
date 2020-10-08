@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "ClaimCustom";
+}
+
+<h3>Testando Custom Extensions Methods</h3>
+
+<br />
+
+@{
+    if (this.IfClaim("Produtos", "Adicionar"))
+    {
+        <p>Voce so vera este texto se tiver permissao de adicionar.</p>
+    }
+
+    if (this.IfClaim("Produtos", "Ler"))
+    {
+        <p>Voce so vera este texto se tiver permissao de ler.</p>
+    }
+
+}
+
+<!--Exibindo ou nao HtmlHelper baseado na claim do usuario -->
+<div>
+    @Html.ActionLink("Exibir Link Se Usuario tiver a claim 'Ler'", "Secret", "Home").IfClaimShow(Context, "Produtos", "Ler")
+    @Html.ActionLink("Exibir Link Se Usuario tiver a claim 'Adicionar'", "Secret", "Home").IfClaimShow(Context, "Produtos", "Adicionar")
+</div>
+
+
